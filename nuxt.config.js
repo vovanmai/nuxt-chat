@@ -85,7 +85,7 @@ export default {
       {
         //pusher
         broadcaster: 'pusher',
-        key: '56f014e7ebf19e7bdb7a',
+        key: process.env.PUSHER_APP_KEY,
         cluster: 'ap1',
         authEndpoint: process.env.API_BASE_URL + '/api/v1/broadcasting/auth',
         authModule: true,
