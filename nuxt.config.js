@@ -89,7 +89,7 @@ export default {
         cluster: 'ap1',
         authEndpoint: process.env.API_BASE_URL + '/api/v1/broadcasting/auth',
         authModule: true,
-        // forceTLS: true
+        forceTLS: true
         //Soketi
         // broadcaster: 'pusher',
         // key: process.env.MIX_PUSHER_APP_KEY,
