@@ -1,0 +1,164 @@
+/* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.fade-custom-enter-active {
+  transition: all .1s ease;
+}
+.fade-custom-leave-active {
+  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.fade-custom-enter, .fade-custom-leave-to
+  /* .fade-custom-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
+body {
+  overflow: hidden;
+  height: 100%;
+  #__nuxt {
+    height: 100%;
+  }
+  #__layout {
+    height: 100%;
+  }
+}
+
+
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container, .container-sm {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container, .container-md, .container-sm {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container, .container-lg, .container-md, .container-sm {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: 1140px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl .container-xxl {
+    max-width: 1320px;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+@for $padding-top from 0 through 200 {
+  .pt-#{$padding-top} {
+    padding-top: #{$padding-top}px;
+  }
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.justify-center {
+  justify-content: center !important;
+}
+
+.justify-between {
+  justify-content: space-between !important;
+}
+
+.justify-end {
+  justify-content: end !important;
+}
+
+.align-item-center {
+  align-items: center !important;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.d-block {
+  display: block;
+}
+
+.flex-direction-column {
+  flex-direction: column;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.p-relative {
+  position: relative;
+}
+
+.p-absolute {
+  position: absolute;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.top-0 {
+  top: 0px;
+}
+
+.right-0 {
+  right: 0px;
+}
+
+.left-0 {
+  left: 0px;
+}
+
+.bottom-0 {
+  bottom: 0px;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.el-form--label-top .el-form-item__label {
+  padding: 0px !important;
+}
+
+.el-form-item {
+  margin-bottom: 10px;
+}
+
+.el-popover {
+  padding: 5px;
+}

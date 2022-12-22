@@ -1,0 +1,44 @@
+{
+  "name": "nuxt-tutorial",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "heroku-postbuild": "npm run build"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^35.3.0",
+    "@ckeditor/ckeditor5-ckfinder": "^35.3.0",
+    "@ckeditor/ckeditor5-code-block": "^35.3.0",
+    "@ckeditor/ckeditor5-vue2": "^3.0.1",
+    "@nuxtjs/auth": "^4.5.1",
+    "@nuxtjs/axios": "^5.3.1",
+    "@nuxtjs/i18n": "^7.3.0",
+    "@nuxtjs/laravel-echo": "^1.1.0",
+    "@nuxtjs/moment": "^1.6.1",
+    "ant-design-vue": "1.7.8",
+    "cookie-universal-nuxt": "^2.2.2",
+    "core-js": "^3.25.3",
+    "decodeuricomponent": "^0.3.1",
+    "element-ui": "^2.15.10",
+    "jquery": "^3.6.1",
+    "lodash": "^4.17.21",
+    "nuxt": "^2.15.8",
+    "object-to-formdata": "^4.4.2",
+    "pusher-js": "^7.5.0",
+    "vue": "^2.7.10",
+    "vue-infinite-loading": "^2.4.5",
+    "vue-server-renderer": "^2.7.10",
+    "vue-template-compiler": "^2.7.10"
+  },
+  "devDependencies": {
+    "sass": "^1.55.0",
+    "sass-loader": "10"
+  },
+  "engines": {
+    "node": "16.14.0"
+  }
+}
