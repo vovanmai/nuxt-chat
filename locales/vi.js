@@ -31,4 +31,5 @@ export default {
   no_data: 'Không có dữ liệu',
   typing: 'đang nhập',
   express_emotion: 'Bài tỏ cảm xúc',
+  please_select_channel: 'Vui lòng chọn một ai đó để gởi tin nhắn'
 }

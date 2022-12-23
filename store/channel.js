@@ -46,10 +46,9 @@ export const actions = {
     }
   },
 
-  async getChannels (context, fullUrl = null) {
+  async getChannels (context, params) {
     try {
-      const url = fullUrl ? fullUrl : 'chat-channels'
-      const { data } = await this.$axios.get(url)
+      const { data } = await this.$axios.get('chat-channels', { params })
       context.commit('setChannels', data.data.data)
       return data.data
     } catch (error) {

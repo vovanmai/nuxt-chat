@@ -39,8 +39,7 @@ export const actions = {
 
   async getMessages (context, params) {
     try {
-      const url = params.next_page ? params.next_page : `chat-channels/${params.id}/messages`
-      const { data } = await this.$axios.get(url)
+      const { data } = await this.$axios.get(`chat-channels/${params.id}/messages`, {params: params.params})
       context.commit('setMessages', data.data.data)
       return data.data
     } catch (error) {

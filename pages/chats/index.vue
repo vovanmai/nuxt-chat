@@ -1,6 +1,6 @@
 <template>
-  <div class="official-main">
-    <img :src="imageWelcome" alt="">
+  <div class="official-main d-flex justify-center align-item-center">
+    <h1 style="color: #68696f">{{ $t('please_select_channel') }}</h1>
   </div>
 </template>
 

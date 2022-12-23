@@ -60,9 +60,11 @@ export default {
     return {
       user: null,
       message: null,
-      nextPage: '',
       typing: false,
       messageTyping: '',
+      params: {
+        cursor: null
+      }
     };
   },
 
@@ -100,10 +102,17 @@ export default {
     async infiniteHandler($state) {
       const data = await this.getMessages({
         id: this.$route.params.id,
-        next_page: this.nextPage
+        params: this.params
       })
-      this.nextPage = data.next_page_url
-      if (this.nextPage) {
+      const params = data.next_page_url ? data.next_page_url.split('?') : []
+
+      let cursor = null
+      if (params.length == 2) {
+        const queries = params[1] ? params[1].split('=') : []
+        cursor = queries[1]
+      }
+      this.params.cursor = cursor
+      if (cursor) {
         await $state.loaded();
       } else {
         await $state.complete();

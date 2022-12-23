@@ -29,4 +29,5 @@ export default {
   no_data: 'No data',
   typing: 'is typing',
   express_emotion: 'Express emotion',
+  please_select_channel: 'Please select chat channel to send message'
 }

@@ -34,7 +34,9 @@ export default {
   data() {
     return {
       selectChannelId: null,
-      nextPage: null,
+      params: {
+        cursor: null
+      }
     }
   },
   computed: {
@@ -52,9 +54,16 @@ export default {
       this.$router.push(this.localePath({ name: 'chats-id', params: { id } }));
     },
     async infiniteHandler($state) {
-      const data = await this.getChannels(this.nextPage)
-      this.nextPage = data.next_page_url
-      if (data.next_page_url) {
+      const data = await this.getChannels(this.params)
+      const params = data.next_page_url ? data.next_page_url.split('?') : []
+
+      let cursor = null
+      if (params.length == 2) {
+        const queries = params[1] ? params[1].split('=') : []
+        cursor = queries[1]
+      }
+      this.params.cursor = cursor
+      if (cursor) {
         $state.loaded();
       } else {
         $state.complete();

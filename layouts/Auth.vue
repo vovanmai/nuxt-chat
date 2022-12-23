@@ -92,6 +92,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+body {
+  overflow: auto;
+}
 .auth-page {
   .el-main {
     padding: 15px;
