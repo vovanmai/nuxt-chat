@@ -84,13 +84,13 @@ export default {
       '@nuxtjs/laravel-echo',
       {
         //pusher
-        broadcaster: 'pusher',
-        key: process.env.PUSHER_APP_KEY,
-        cluster: 'ap1',
-        authEndpoint: process.env.API_BASE_URL + '/api/v1/broadcasting/auth',
-        authModule: true,
-        forceTLS: true
-        //Soketi
+        // broadcaster: 'pusher',
+        // key: process.env.PUSHER_APP_KEY,
+        // cluster: 'ap1',
+        // authEndpoint: process.env.API_BASE_URL + '/api/v1/broadcasting/auth',
+        // authModule: true,
+        // forceTLS: true
+        // Soketi
         // broadcaster: 'pusher',
         // key: process.env.MIX_PUSHER_APP_KEY,
         // wsHost: process.env.MIX_PUSHER_HOST,
@@ -102,6 +102,17 @@ export default {
         // enabledTransports: ['ws', 'wss'],
         // authEndpoint: process.env.API_BASE_URL + '/api/v1/broadcasting/auth',
         // authModule: true,
+
+        //soketi render
+        broadcaster: 'pusher',
+        key: 'app-key',
+        wsHost: 'soketi-server.onrender.com',
+        forceTLS: false,
+        encrypted: true,
+        disableStats: true,
+        enabledTransports: ['ws', 'wss'],
+        authEndpoint: process.env.API_BASE_URL + '/api/v1/broadcasting/auth',
+        authModule: true,
       },
     ]
   ],
