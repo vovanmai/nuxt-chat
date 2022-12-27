@@ -105,7 +105,7 @@ export default {
 
         //soketi render
         broadcaster: 'pusher',
-        key: 'app-key',
+        key: process.env.PUSHER_APP_KEY,
         wsHost: process.env.PUSHER_HOST,
         forceTLS: false,
         encrypted: true,
