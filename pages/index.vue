@@ -1,34 +1,13 @@
 <template>
-  <div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
+  <div class="official-main d-flex justify-center align-item-center">
+    <h1 style="color: #68696f">{{ $t('please_select_channel') }}</h1>
   </div>
 </template>
 
 <script>
-import { mapMutations, mapActions } from 'vuex'
-
 export default {
   middleware: ['authenticated'],
-  transition: 'fade-custom',
   layout: 'Main',
-  components: {
-  },
   computed: {
   },
   data() {
@@ -38,16 +17,19 @@ export default {
 
   head() {
     return {
-      title: 'Home page',
+      title: 'Chat',
     }
   },
-  methods: {
-
-  },
-  created() {
-    console.log('index')
-  }
 }
 </script>
 
-
+<style lang="scss" scoped>
+  .official-main {
+    height: 100%;
+    width: 100%;
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+</style>
