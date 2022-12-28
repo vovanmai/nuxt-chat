@@ -10,14 +10,15 @@
     </div>
     <div>
       <div class="time-ago">{{ $moment(channel.updated_at).fromNow() }}</div>
-<!--      <div class="total-unread">1</div>-->
+    </div>
+    <div class="wrap-chat-active">
+      <div v-show="sender?.active" class="chat-active"></div>
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
-import { find } from 'lodash'
 
 export default {
   props: {
@@ -104,6 +105,16 @@ export default {
     }
     .time-ago {
       font-size: 13px;
+    }
+
+    .wrap-chat-active {
+      padding-left: 5px;
+      .chat-active {
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        background: #34cb34;
+      }
     }
   }
 </style>

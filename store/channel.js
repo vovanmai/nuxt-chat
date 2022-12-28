@@ -3,11 +3,26 @@ import { remove, map } from 'lodash'
 export const state = () => ({
   channel: null,
   channels: [],
+  activeUsers: [],
+  activeUserIds: [],
 })
 
 export const mutations = {
   setChannels(state, data) {
     state.channels = [...state.channels, ...data]
+  },
+
+  setActiveUsers(state, data) {
+    state.activeUsers = data
+    state.activeUserIds = map(data, 'id')
+    map(state.channels, (item) => {
+      if (state.activeUserIds.includes(item.sender.id)) {
+        item.sender.active = true
+      } else if (state.activeUserIds.includes(item.receiver.id )) {
+        item.receiver.active = true
+      }
+      return item
+    })
   },
 
   resetChannels(state) {
@@ -33,6 +48,17 @@ export const mutations = {
     })
     channels.unshift(value)
     state.channels = channels
+  },
+
+  setActiveUserForChannel(state, data) {
+    map(state.channels, (item) => {
+      if (item.sender.id == data.user_id) {
+        item.sender.active = data.active
+      } else if (item.receiver.id == data.user_id) {
+        item.receiver.active = data.active
+      }
+      return item
+    })
   },
 }
 

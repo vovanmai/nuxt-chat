@@ -1,6 +1,5 @@
 <template>
   <el-container class="main-layout h-100">
-    <snow></snow>
     <el-header class="d-flex align-item-center" :height="null">
       <div class="content-header container d-flex justify-between align-item-center">
         <div id="app-logo">
@@ -31,6 +30,7 @@
         </div>
       </div>
     </el-header>
+    <snow></snow>
     <el-container class="overflow-hidden">
       <side-bar></side-bar>
       <el-main class="overflow-hidden">
@@ -44,6 +44,8 @@
 import $ from 'jquery'
 import SideBar from '@/components/layouts/SideBar'
 import Snow from '@/components/Snow'
+import {mapMutations, mapState} from "vuex";
+import { remove, map } from 'lodash'
 
 export default {
   name: 'MainLayout',
@@ -74,7 +76,13 @@ export default {
       ]
     }
   },
+  computed: {
+    ...mapState('user', ['activeUsers']),
+    ...mapState('channel', ['activeUserIds']),
+  },
   methods: {
+    ...mapMutations('user', ['setActiveUser']),
+    ...mapMutations('channel', ['setActiveUserForChannel', 'setActiveUsers']),
     changeLanguage (value) {
       this.$i18n.setLocale(value)
       this.locale = value
@@ -94,6 +102,29 @@ export default {
     $(".toggle-menu").click(function(){
       $("#menu-nav").slideToggle("slow")
     });
+
+    const idAuth = this.$store.state.auth.user ? this.$store.state.auth.user.data.id : null
+    this.$echo.join(`user-online`)
+      .here((users) => {
+        users = remove(users, function(item) {
+          return item.id !== idAuth;
+        });
+
+        this.setActiveUsers(users)
+      })
+      .joining((user) => {
+        this.setActiveUser(user)
+        this.setActiveUserForChannel({
+          user_id: user.id,
+          active: true,
+        })
+      })
+      .leaving((user) => {
+        this.setActiveUserForChannel({
+          user_id: user.id,
+          active: false,
+        })
+      });
   },
   created() {
     this.$moment.locale(this.$i18n.locale)
