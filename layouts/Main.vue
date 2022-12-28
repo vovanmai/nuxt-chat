@@ -46,6 +46,7 @@ import SideBar from '@/components/layouts/SideBar'
 import Snow from '@/components/Snow'
 
 export default {
+  name: 'MainLayout',
   transition: 'fade-custom',
   components: {
     SideBar,

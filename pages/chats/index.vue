@@ -9,6 +9,7 @@ import welcome from '~/assets/images/chat.jpg'
 import {mapMutations} from "vuex";
 
 export default {
+  name: 'ChatIndex',
   middleware: ['authenticated'],
   layout: 'Main',
   computed: {

@@ -79,7 +79,9 @@ export default {
         }
       }
     ],
-    ['cookie-universal-nuxt', { alias: 'cookiz' }],
+    ['cookie-universal-nuxt', {
+      alias: 'cookiz'
+    }],
     [
       '@nuxtjs/laravel-echo',
       {

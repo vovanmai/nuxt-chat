@@ -45,6 +45,7 @@ import Message from '@/components/Message'
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
+  name: 'ChatId',
   middleware: ['authenticated'],
   // transition: 'fade-custom',
   layout: 'Main',
