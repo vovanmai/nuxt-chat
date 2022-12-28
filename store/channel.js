@@ -59,8 +59,6 @@ export const mutations = {
       value.sender.active = true
     } else if (state.activeUserIds.includes(value.receiver.id)) {
       value.receiver.active = true
-    } else {
-      value.receiver.active = false
     }
 
     channels.unshift(value)
