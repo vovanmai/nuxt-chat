@@ -10,6 +10,14 @@ export const state = () => ({
 export const mutations = {
   setChannels(state, data) {
     state.channels = [...state.channels, ...data]
+    map(state.channels, (item) => {
+      if (state.activeUserIds.includes(item.sender.id)) {
+        item.sender.active = true
+      } else if (state.activeUserIds.includes(item.receiver.id )) {
+        item.receiver.active = true
+      }
+      return item
+    })
   },
 
   setActiveUsers(state, data) {
@@ -46,6 +54,15 @@ export const mutations = {
     const channels = remove(state.channels, (item) => {
       return item.id !==  value.id
     })
+
+    if (state.activeUserIds.includes(value.sender.id)) {
+      value.sender.active = true
+    } else if (state.activeUserIds.includes(value.receiver.id)) {
+      value.receiver.active = true
+    } else {
+      value.receiver.active = false
+    }
+
     channels.unshift(value)
     state.channels = channels
   },
