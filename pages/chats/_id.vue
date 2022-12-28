@@ -24,7 +24,7 @@
         <div v-show="typing" class="typing wave-text-animated text-left">
           <span v-for="(item, index) in messageTyping.split(' ')" :key="index">{{ item  + '&nbsp;' }}</span>
         </div>
-        <div class="el-input">
+        <div class="el-input d-flex">
           <input
             type="text"
             @keyup.enter="sendMessageToUser"
@@ -33,6 +33,9 @@
             :placeholder="$t('please_input')"
             v-model="message"
             class="el-input__inner">
+          <el-button @click="sendMessageToUser" class="send-message d-flex align-item-center justify-center" type="success">
+            <i class="el-icon-s-promotion"></i>
+          </el-button>
         </div>
       </div>
     </div>
@@ -253,5 +256,10 @@ export default {
     100% {
       transform: translateY(0em);
     }
+  }
+
+  .send-message {
+    width: 50px;
+    margin-left: 10px;
   }
 </style>
