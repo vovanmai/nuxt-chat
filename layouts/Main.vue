@@ -77,12 +77,10 @@ export default {
     }
   },
   computed: {
-    ...mapState('user', ['activeUsers']),
     ...mapState('channel', ['activeUserIds']),
   },
   methods: {
-    ...mapMutations('user', ['setActiveUser']),
-    ...mapMutations('channel', ['setActiveUserForChannel', 'setActiveUsers']),
+    ...mapMutations('channel', ['setActiveUserForChannel', 'setInActiveUser', 'setActiveUsers', 'setActiveUser']),
     changeLanguage (value) {
       this.$i18n.setLocale(value)
       this.locale = value
@@ -120,6 +118,7 @@ export default {
         })
       })
       .leaving((user) => {
+        this.setInActiveUser(user)
         this.setActiveUserForChannel({
           user_id: user.id,
           active: false,

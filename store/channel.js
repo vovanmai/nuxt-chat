@@ -1,4 +1,4 @@
-import { remove, map } from 'lodash'
+import { remove, map, find, filter } from 'lodash'
 
 export const state = () => ({
   channel: null,
@@ -30,6 +30,24 @@ export const mutations = {
         item.receiver.active = true
       }
       return item
+    })
+  },
+
+  setActiveUser(state, value) {
+    const val = find(state.activeUsers, (item) => { return item.id === value.id })
+    if (!val) {
+      state.activeUsers.push(value)
+      state.activeUserIds.push(value.id)
+    }
+  },
+
+  setInActiveUser(state, value) {
+    state.activeUsers = filter(state.activeUsers, (item) => {
+      return item.id !== value.id
+    })
+
+    state.activeUserIds = filter(state.activeUserIds, (item) => {
+      return item !== value.id
     })
   },
 

@@ -4,6 +4,7 @@
       <div class="chat-info">
         <el-avatar class="avatar" :style="'background: ' + user?.color">{{ user && user.full_name ? user.full_name.substring(0, 1) : '' }}</el-avatar>
         <div class="name">{{ user && user.full_name }}</div>
+        <div v-show="activeUserIds.includes(user?.id)" class="online"></div>
       </div>
     </div>
     <div class="chat-body flex-1" ref="messages">
@@ -57,7 +58,7 @@ export default {
     InfiniteLoading
   },
   computed: {
-    ...mapState('channel', ['channel']),
+    ...mapState('channel', ['channel', 'activeUserIds']),
     ...mapState('message', ['messages']),
   },
   data() {
@@ -261,5 +262,13 @@ export default {
   .send-message {
     width: 50px;
     margin-left: 10px;
+  }
+
+  .online {
+    margin-left: 5px;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: #34cb34;
   }
 </style>
