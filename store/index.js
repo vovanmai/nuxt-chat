@@ -1,5 +1,6 @@
 export const state = () => ({
   locale: 'vi',
+  showSideBar: false,
 })
 
 export const getters = {
@@ -15,6 +16,10 @@ export const getters = {
 export const mutations = {
   setLocale(state, locale) {
     state.locale = locale
+  },
+
+  setShowSideBar(state, value) {
+    state.showSideBar = value
   },
 
   removeCurrentUserLogin(state) {

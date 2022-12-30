@@ -58,7 +58,7 @@
     </el-header>
     <snow></snow>
     <el-container class="overflow-hidden">
-      <side-bar></side-bar>
+      <side-bar v-if="showSideBar"></side-bar>
       <el-main class="overflow-hidden">
         <Nuxt></Nuxt>
       </el-main>
@@ -98,6 +98,7 @@ export default {
   },
   computed: {
     ...mapState('channel', ['activeUserIds']),
+    ...mapState(['showSideBar']),
   },
   methods: {
     ...mapMutations('channel', ['setActiveUserForChannel', 'setInActiveUser', 'setActiveUsers', 'setActiveUser']),
