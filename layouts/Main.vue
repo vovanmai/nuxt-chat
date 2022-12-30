@@ -12,10 +12,10 @@
           </span>
         </div>
         <div id="menu-nav">
-          <div class="menu-item">
-            <a @click="logout">{{ $t('logout') }}</a>
-          </div>
-          <div class="menu-item">
+<!--          <div class="menu-item">-->
+<!--            <a @click="logout">{{ $t('logout') }}</a>-->
+<!--          </div>-->
+<!--          <div class="menu-item">
             <el-popover
               placement="bottom"
               width="40"
@@ -26,6 +26,32 @@
               </a>
               <div @click="changeLanguage(item.value)" :class="['language', locale === item.value ? 'active' : '']" v-for="(item, index) in languages" :index="index">{{ $t(item.text) }}</div>
             </el-popover>
+          </div>-->
+<!--          <div class="menu-item">
+            <el-popover
+              placement="bottom"
+              width="40"
+              trigger="hover">
+              <a slot="reference">
+                <el-avatar style="background: red">{{ $store.state.auth.user?.data?.full_name.substring(0, 1) }}</el-avatar>
+                <span style="margin-left: 7px">{{ $store.state.auth.user?.data?.full_name }}</span>
+                <i style="margin-left: 7px" class="el-icon-arrow-down"></i>
+              </a>
+              <div @click="changeLanguage(item.value)" :class="['language', locale === item.value ? 'active' : '']" v-for="(item, index) in languages" :index="index">{{ $t(item.text) }}</div>
+            </el-popover>
+          </div>-->
+          <div class="menu-item">
+            <el-dropdown :hide-on-click="false">
+              <span class="el-dropdown-link d-flex align-item-center">
+                <el-avatar style="background: red">{{ $store.state.auth.user?.data?.full_name.substring(0, 1) }}</el-avatar>
+                <span style="margin-left: 7px; color: #1890ff">{{ $store.state.auth.user?.data?.full_name }}</span>
+                <i style="margin-left: 7px" class="el-icon-arrow-down"></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item @click.native="logout">{{ $t('logout') }}</el-dropdown-item>
+                <el-dropdown-item @click.native="changeLanguage">{{ languages[locale == 'vi' ? 'en' : 'vi'] }}</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
           </div>
         </div>
       </div>
@@ -64,16 +90,10 @@ export default {
   data() {
     return {
       locale: this.$i18n.locale,
-      languages: [
-        {
-          value: 'en',
-          text: 'english',
-        },
-        {
-          value: 'vi',
-          text: 'vietnamese',
-        },
-      ]
+      languages: {
+        en: 'English',
+        vi: 'Vietnamese',
+      }
     }
   },
   computed: {
@@ -81,10 +101,10 @@ export default {
   },
   methods: {
     ...mapMutations('channel', ['setActiveUserForChannel', 'setInActiveUser', 'setActiveUsers', 'setActiveUser']),
-    changeLanguage (value) {
-      this.$i18n.setLocale(value)
-      this.locale = value
-      this.$moment.locale(value)
+    changeLanguage () {
+      this.locale = this.locale == 'vi' ? 'en' : 'vi'
+      this.$i18n.setLocale(this.locale)
+      this.$moment.locale(this.locale)
     },
     async logout() {
       await this.$auth.logout()
