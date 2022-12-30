@@ -1,6 +1,6 @@
 export const state = () => ({
   locale: 'vi',
-  showSideBar: false,
+  showSideBar: true,
 })
 
 export const getters = {
