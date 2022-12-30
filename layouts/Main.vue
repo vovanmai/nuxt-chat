@@ -5,41 +5,33 @@
         <div id="app-logo">
           <NuxtLink :to="localePath('chats')">
             <img class="app-image" src="~/assets/images/favicon.png" alt="">
-            <span class="app-name">Chat Realtime</span>
+            <span class="app-name">Chat App</span>
           </NuxtLink>
           <span class="toggle-menu">
             <img src="~/assets/images/menu.svg" alt="">
           </span>
         </div>
         <div id="menu-nav">
-<!--          <div class="menu-item">-->
-<!--            <a @click="logout">{{ $t('logout') }}</a>-->
-<!--          </div>-->
-<!--          <div class="menu-item">
-            <el-popover
-              placement="bottom"
-              width="40"
-              trigger="hover">
-              <a slot="reference">
-                {{ $t('language') }}
-                <i class="el-icon-arrow-down"></i>
-              </a>
-              <div @click="changeLanguage(item.value)" :class="['language', locale === item.value ? 'active' : '']" v-for="(item, index) in languages" :index="index">{{ $t(item.text) }}</div>
-            </el-popover>
-          </div>-->
-<!--          <div class="menu-item">
-            <el-popover
-              placement="bottom"
-              width="40"
-              trigger="hover">
-              <a slot="reference">
-                <el-avatar style="background: red">{{ $store.state.auth.user?.data?.full_name.substring(0, 1) }}</el-avatar>
-                <span style="margin-left: 7px">{{ $store.state.auth.user?.data?.full_name }}</span>
-                <i style="margin-left: 7px" class="el-icon-arrow-down"></i>
-              </a>
-              <div @click="changeLanguage(item.value)" :class="['language', locale === item.value ? 'active' : '']" v-for="(item, index) in languages" :index="index">{{ $t(item.text) }}</div>
-            </el-popover>
-          </div>-->
+          <div class="menu-item d-flex align-item-center">
+            <a @click="drawerOnlineList = true" style="color: rgb(60 128 27)">{{ `Online(${ activeUserIds.length })` }}</a>
+            <el-drawer
+              :show-close="false"
+              class="online-list"
+              :visible.sync="drawerOnlineList"
+              direction="rtl"
+              size="15%"
+            >
+              <div style="padding: 0px 15px">
+                <div v-for="(user, index) in activeUsers" :key="index" style="margin-bottom: 10px" class="d-flex align-item-center justify-between">
+                  <div class="d-flex align-item-center">
+                    <el-avatar class="avatar" :style="'background: ' + user?.color">{{ user && user.full_name ? user.full_name.substring(0, 1) : '' }}</el-avatar>
+                    <div style="margin-left: 7px">{{ user && user.full_name }}</div>
+                  </div>
+                  <div class="online"></div>
+                </div>
+              </div>
+            </el-drawer>
+          </div>
           <div class="menu-item">
             <el-dropdown :hide-on-click="false">
               <span class="el-dropdown-link d-flex align-item-center">
@@ -89,6 +81,7 @@ export default {
   },
   data() {
     return {
+      drawerOnlineList: false,
       locale: this.$i18n.locale,
       languages: {
         en: 'English',
@@ -97,7 +90,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('channel', ['activeUserIds']),
+    ...mapState('channel', ['activeUserIds', 'activeUsers']),
     ...mapState(['showSideBar']),
   },
   methods: {
@@ -106,6 +99,9 @@ export default {
       this.locale = this.locale == 'vi' ? 'en' : 'vi'
       this.$i18n.setLocale(this.locale)
       this.$moment.locale(this.locale)
+    },
+    goToChatPage(id) {
+
     },
     async logout() {
       await this.$auth.logout()
@@ -226,5 +222,13 @@ body {
       }
     }
   }
+}
+
+.online {
+  margin-left: 5px;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background: #34cb34;
 }
 </style>

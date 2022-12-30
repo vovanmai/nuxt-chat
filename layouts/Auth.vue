@@ -8,7 +8,7 @@
             <div class="logo-app w-100">
               <a href="/login" class="logo">
                 <img class="app-image" src="~/assets/images/favicon.png" alt="">
-                <span class="app-name">Chat Realtime</span>
+                <span class="app-name">Chat App</span>
               </a>
               <span id="nav-toggle">
                 <img src="~/assets/images/menu.svg" alt="">

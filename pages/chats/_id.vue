@@ -2,7 +2,7 @@
   <div class="official-main d-flex flex-direction-column h-100">
     <div class="chat-header">
       <div class="chat-info">
-        <div style="margin-right: 7px" @click="setShowSideBar(!showSideBar)">
+        <div style="margin-right: 7px; cursor: pointer" @click="setShowSideBar(!showSideBar)">
           <i style="font-size: 18px" :class="showSideBar ? 'el-icon-s-fold' : 'el-icon-s-unfold'"></i>
         </div>
         <el-avatar class="avatar" :style="'background: ' + user?.color">{{ user && user.full_name ? user.full_name.substring(0, 1) : '' }}</el-avatar>
